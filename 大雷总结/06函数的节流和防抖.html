@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        
+        html,
+        body {
+            height: 2000px;
+        }
+        
+        .item {
+            height: 500px;
+            width: 100%;
+            margin-top: 10px;
+            background-color: aqua;
+        }
+    </style>
+</head>
+
+<body>
+    电话:<input id="usertel"><button id="btn">发送短信验证码</button>
+</body>
+<script>
+    var btn = document.getElementById("btn");
+    var timer = null;
+    var num = 10;
+    var fn = function() {
+        btn.disabled = true;
+        btn.innerHTML = "还有" + num + "秒可以再次发送";
+        btn.onclick = null;
+        timer = setInterval(function() {
+            num--;
+            btn.innerHTML = "还有" + num + "秒可以再次发送";
+            if (num == 0) {
+                btn.innerHTML = "提交";
+                btn.disabled = false;
+                console.log(timer);
+                
+                clearInterval(timer);
+                num = 10;
+                btn.onclick = fn;
+            }
+        }, 1000);
+
+    }
+    btn.onclick = fn;
+</script>
+
+</html>

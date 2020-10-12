@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    var person = {
+        username: "leson"
+    }
+    var yellowPerson = {
+        __proto__: person //内部原型链
+    }
+    alert(yellowPerson.username);
+    //yellowPerson.constructor.prototype  === Object.prototype ture
+</script>
+
+</html>

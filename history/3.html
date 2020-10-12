@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3</title>
+</head>
+
+<body>
+    <a href="1.html">1</a><br><br>
+    <a href="3.html#/abc">3</a><br><br>
+    <a href="#d1">第一章</a>&nbsp;
+    <a href="#d2">第二章</a>&nbsp;
+    <a href="#d3">第三章</a>&nbsp;<br><br>
+    <div id='d1' style="height: 300px;border:1px solid red">第一章···balabalabala</div><br><br>
+    <div id='d2' style="height: 300px;border:1px solid green">第二章···balabalabala</div><br><br>
+    <div id='d3' style="height: 300px;border:1px solid blue">第二章···balabalabala</div><br><br>
+</body>
+<script>
+    console.log(history.length);
+    window.onpopstate = function (event) {
+        console.log('location: ' + document.location);
+        console.log('state: ' + JSON.stringify(event.state));
+    };
+    setTimeout(() => {
+        var params = new URLSearchParams(location.search.slice(1));
+        console.log('qwe',params);
+        params.set('abc', 111)
+        // for (const key of params.keys()) {
+        //     params.delete(key)
+        // }
+        // params.delete('abc')
+        // window.history.replaceState({}, 'qwew', `${location.pathname}${location.hash}`);
+        window.history.replaceState({}, 'qwew', `${location.pathname}?${params}`);
+
+    }, 3000);
+
+    var searchParams = new URLSearchParams('');
+
+    for (var key of searchParams.keys()) {
+        console.log(key);
+    }
+
+    var url = new URL(location);
+    var foo = url.searchParams.get('foo') || 'somedefault';
+    console.log('qwe',foo);
+</script>
+
+</html>

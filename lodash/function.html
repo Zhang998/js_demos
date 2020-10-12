@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Function</title>
+    <script src="lodash.js"></script>
+</head>
+
+<body>
+    <button onclick=f1()>触发f1</button>
+    <button onclick=f2()>触发f2</button>
+    <button onclick=f3(1,2,3,4,5)>触发f3</button>
+    <button onclick=f4()>触发f4</button>
+    <button onclick=f6()>触发f6</button>
+    <button onclick=f7()>触发f7</button>
+    <button onclick=f8(1,2,3,4)>触发f8</button>
+    <button onclick=f11(Date.now())>触发f11</button>
+    <button onclick=f12(Date.now())>触发f12</button>
+    <button onclick=f13(1,2,3)>触发f13</button>
+    <button onclick=f14(1,2)>触发f14</button>
+</body>
+<script>
+    //_.after(n, func)
+    var f1 = _.after(3, function () {
+        console.log('qwe');
+    })
+
+    //_.before(n, func)
+    var f2 = _.after(3, function () {
+        console.log('qwe');
+    })
+
+    //_.ary(func, [n=func.length])
+    //有啥用？
+    var fn1 = function () {
+        console.log(arguments);
+    }
+    var f3 = _.ary(fn1, 2)
+
+    //_.bind(func, thisArg, [partials])
+    //比原生的bind有啥优势？
+    var greet = function (greeting, punctuation) {
+        return greeting + ' ' + this.user + punctuation;
+    };
+    var obj1 = { 'user': 'fred' };
+    var bound = _.bind(greet, obj1, 'hi', 'abc');
+    // console.log(bound('!'));
+
+    //_.bindKey(object, key, [partials])
+    //??
+
+    //_.curry(func, [arity=func.length])
+    //有啥用？
+    var abc = function (a, b, c) {
+        return [a, b, c];
+    };
+    var curried = _.curry(abc);
+    // console.log(curried(1)(2));
+    // console.log(curried(1)(2)(3));
+    // console.log(curried(1, 2)(3));
+    // console.log(curried(1, 2, 3));
+
+    //_.curryRight(func, [arity=func.length])
+    //同上，花里胡哨
+
+    //_.debounce(func, [wait=0], [options={}])
+    //这个好用
+    function f5() {
+        console.log('qwe');
+    }
+    // var f4 = _.debounce(f5, 2000)
+    var f4 = _.debounce(f5, 1000, { 'maxWait': 3000 })
+    // var f4 = _.debounce(f5, 2000, {
+    //     'leading': true,
+    //     'trailing': false
+    // })
+
+    //_.defer(func, [args])
+    //比直接调用setTimeout有啥区别？
+    function f6() {
+        _.defer(function (text) {
+            console.log(text);
+        }, 'abc');
+    }
+
+    //_.delay(func, wait, [args])
+    //比直接调用setTimeout有啥区别？
+    function f7() {
+        _.delay(function (text) {
+            console.log(text);
+        }, 1000, 'laterabc');
+    }
+
+    //_.flip(func)
+    //翻转参数有啥用？
+    function f8(...rest) {
+        let fn2 = _.flip(function () {
+            console.log(arguments);
+        })
+        fn2(...rest);
+    }
+
+    //_.memoize(func, [resolver])
+    //有啥用？
+    var f9a = { a: 1, b: 2 };
+    var f9 = _.memoize(Object.values);
+    // console.log(f9(f9a));
+    f9a.a = 5;
+    // console.log(f9(f9a));
+
+    //_.negate(predicate)
+    //结果取反有啥用？
+    function isEven(n) {
+        return n % 2 == 0;
+    }
+    var f10a = _.filter([1, 2, 3, 4, 5, 6], _.negate(isEven));
+    console.log(f10a);
+
+    //_.once(func)
+    //创建一个只能调用一次的函数
+    var f11 = _.once(console.log)
+
+    //_.overArgs(func, [transforms=[_.identity]])
+    //貌似用的到
+    function doubled(n) {
+        return n * 2;
+    }
+    function square(n) {
+        return n * n;
+    }
+    var func = _.overArgs(function (x, y) {
+        return [x, y];
+    }, [square, doubled]);
+    // console.log(func(3, 6));
+
+    //_.partial(func, [partials])
+    //和给函数参数写默认值有啥区别呢
+    var greet = function (greeting, name, abb) {
+        return greeting + ' ' + name + abb;
+    };
+    var sayHelloTo = _.partial(greet, 'hello');
+    // console.log(sayHelloTo('fred', 123));
+    // 使用了占位符。
+    var greetFred = _.partial(greet, _, 'fred', _);
+    // console.log(greetFred('hi', 456));
+
+    //_.partialRight(func, [partials])
+    //同上，只是参数位置换了
+
+    //_.rearg(func, indexes)
+    //花里胡哨,干嘛要调整参数位置
+    var rearged = _.rearg(function (a, b, c) {
+        return [a, b, c];
+    }, [2, 0, 1]);
+    console.log(rearged('b', 'c', 'a'));
+
+    //_.rest(func, [start=func.length-1])
+    //类似函数里的rest参数
+
+    //_.spread(func, [start=0])
+    //类似于Function#apply.
+
+    //_.throttle(func, [wait=0], [options={}])
+    //防抖函数
+    // var f12 = _.throttle(console.log, 4000, { 'trailing': false })
+    var f12 = _.throttle(console.log, 4000)
+
+    //_.unary(func)
+    //有啥用？？
+    var f13 = _.unary(console.log)
+
+    //_.wrap(value, [wrapper=identity])
+    //有啥用？？
+    var f14 = _.wrap(value => value, function (func, text1, text2, text3) {
+        let abc = func(text1) + '--' + func(text2) + func(text3)
+        console.log(abc);
+    });
+
+
+
+
+</script>
+
+</html>

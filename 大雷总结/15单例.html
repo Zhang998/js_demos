@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        
+        #dialog {
+            width: 400px;
+            height: 400px;
+            margin: 50px auto;
+            background-color: black;
+            color: aliceblue;
+            display: none;
+        }
+        
+        #dialog .tip,
+        #dialog .footer {
+            height: 50px;
+        }
+        
+        #dialog .content {
+            height: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <button id="del">删除</button>
+    <button id="create">新增</button>
+    <div id="dialog">
+        <div class="tip">提示</div>
+        <div class="content">
+            <input id="username"><br />
+            <input id="userpwd"><br />
+        </div>
+        <div class="footer">
+            <button id="ok">确定</button>
+            <button id="cancel">取消</button>
+        </div>
+    </div>
+</body>
+<script>
+    function dialog() {
+        var box = document.getElementById("dialog"); //var num =10
+        box.content = box.querySelector(".content");
+        box.OKBtn = document.getElementById("ok");
+        box.cancelBtn = document.getElementById("cancel");
+
+        var setContent = function(json) {
+            box.style.display = "block";
+            box.content.innerHTML = json["html"]; // num++
+            box.OKBtn.onclick = function() {
+                box.style.display = "none";
+                json["ok"]();
+            }
+            box.cancelBtn.onclick = function() {
+                box.style.display = "none";
+                json["cancel"]();
+            }
+        }
+        return setContent;
+    }
+    var delBtn = document.getElementById("del");
+    var createBtn = document.getElementById("create");
+
+    var showDialog = dialog();
+    delBtn.onclick = function() {
+        showDialog({
+            html: "你确定要删除我吗",
+            ok: function() {
+                alert("调用ajax去删除");
+            },
+            cancel: function() {
+                alert("您放弃了");
+            }
+        });
+    }
+    createBtn.onclick = function() {
+        showDialog({
+            html: "用户名<input id=username><br/>密码<input id=userpwd>",
+            ok: function() {
+                alert("调用ajax去新增");
+            },
+            cancel: function() {
+                alert("您放弃了");
+            }
+        })
+    }
+</script>
+
+</html>

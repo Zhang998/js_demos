@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .boss {
+            width: 520px;
+
+            margin: 100px auto;
+        }
+
+        .imgBox {
+            border: 1px solid;
+            height: 280px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 5px;
+        }
+
+        .imgBox img {
+            width: 520px;
+        }
+
+        .huadong {
+            width: 518px;
+            line-height: 30px;
+            text-align: center;
+            background-color: #ccc;
+            margin: 10px 0;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .huadong .ball {
+            width: 60px;
+            height: 30px;
+            border-radius: 10%;
+            position: absolute;
+            background-color: #f0f;
+            top: 0;
+        }
+
+        .imgBox .empty {
+            position: absolute;
+            left: 100px;
+            top: 100px;
+            width: 60px;
+            height: 60px;
+            background-color: #fff;
+        }
+
+        .imgBox .follow {
+            position: absolute;
+            left: 0;
+            top: 100px;
+            width: 60px;
+            height: 60px;
+            background-image: url(num/01.jpg);
+            background-color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="boss">
+        <div class="imgBox">
+            <img src="images/01.jpg" alt="">
+            <div class="empty"></div>
+            <div class="follow"></div>
+        </div>
+        <div class="huadong">
+            拖动滑块完成验证
+            <div class="ball"></div>
+        </div>
+    </div>
+
+</body>
+<script>
+    var follow = document.getElementsByClassName("follow")[0];
+    var imgBox = document.getElementsByClassName("imgBox")[0];
+    var empty = document.getElementsByClassName("empty")[0];
+    var ball = document.getElementsByClassName("ball")[0];
+    var huadong = document.getElementsByClassName("huadong")[0];
+    console.log(follow, imgBox, empty, ball);
+    var maxX = imgBox.clientWidth - empty.clientWidth;
+    var maxY = imgBox.clientHeight - empty.clientHeight;
+    console.log(maxX, maxY);
+    var aa = Math.round(Math.random() * maxX);
+    var bb = Math.round(Math.random() * maxY);
+    while (aa < 150) {
+        var aa = Math.round(Math.random() * maxX);
+    }
+    empty.style.left = aa + "px";
+    empty.style.top = bb + "px";
+    follow.style.top = bb + "px";
+    follow.style.backgroundPosition = `${-aa}px ${-bb}px`;
+    ball.onmousedown = function (e) {
+        var ballx = e.offsetX;
+        console.log(ballx);
+        document.onmousemove = function (ele) {
+            var x = ele.pageX - huadong.offsetLeft - ballx;
+            if (x < 0) {
+                x = 0;
+            }
+            if (x > maxX) {
+                x = maxX;
+            }
+            ball.style.left = x + "px";
+            follow.style.left = x + "px";
+            console.log(66666);
+        }
+    document.onmouseup = function (e) {
+        document.onmousemove = null;
+        if (follow.offsetLeft >= empty.offsetLeft - 2 && follow.offsetLeft <= empty.offsetLeft + 2) {
+            alert("验证成功！");
+            location.href = "https://www.baidu.com/";
+        } else {
+            alert("验证失败，请再试一次！");
+            location.href = "";
+        }
+
+    }
+    }
+
+
+
+</script>
+
+</html>

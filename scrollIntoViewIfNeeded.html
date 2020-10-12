@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>元素自动滚动到可视范围内</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-size: 50px;
+        }
+
+        .test {
+            height: 60vh;
+            background: #666;
+            width: 50vw;
+            margin: 0 auto;
+            border: 2px solid red;
+            overflow-y: scroll;
+        }
+
+        .intoview {
+            height: 100px;
+            margin: 30px 0;
+            border: 5px solid;
+            background: green;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="test" class="test">
+        <div id="m-intoview" class="intoview" style="height: 100px;">1</div>
+        <div class="intoview">2</div>
+        <div class="intoview">3</div>
+        <div class="intoview">4</div>
+        <div class="intoview">5</div>
+        <div class="intoview">6</div>
+        <div class="intoview">7</div>
+        <div class="intoview">8</div>
+        <div class="intoview">9</div>
+    </div>
+
+    <div id="test" class="test2"></div>
+
+    <script type="text/javascript">
+        var div_list = document.getElementsByClassName("intoview");
+        for (const item of div_list) {
+            item.onclick = function () {
+                for (const item of div_list) {
+                    item.style.color = 'white';
+                }
+                console.log(item.offsetHeight);
+                console.log(item.clientHeight);
+                item.style.height = '200px'
+                console.log(item.offsetHeight);
+                console.log(item.clientHeight);
+
+                // item.scrollIntoViewIfNeeded(true);
+                item.scrollIntoViewIfNeeded({
+                    behavior: "smooth",
+                    block: "start",
+                    inline: "nearest"
+                });
+            }
+
+
+        }
+    </script>
+</body>
+
+</html>

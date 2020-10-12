@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>断点练习</title>
+    <script src="./example.js"></script>
+</head>
+
+<body>
+    <button onclick="btnclick()">点击事件</button>
+    <button onclick="btnclick2()">点击事件2</button>
+    <button id="btn2">点击事件3</button>
+    <input type="text" onkeypress="keypress(this)" onkeydown="keydown(this)">
+    <span></span>
+</body>
+<script>
+    console.assert(true, 'abc')
+    try {
+        throw new Error(123);
+    } catch (error) { console.log(error) }
+    console.error('def')
+    window.onerror = function (message, url, line) {    //打印错误信息，可以将错误信息发送到服务端
+        console.log('message=>', message, '\nurl=>', url, '\noneline=>', line)
+    }
+    var a = 1;
+    var b = 2;
+    try {
+        throw 'abc';    ////Pause on exceptions Pause On Caught Exceptions  已捕获的异常断点
+
+    } catch (error) {
+        console.error(error)
+    }
+    var c = 3;
+    // throw "def";     //Pause on exceptions 异常断点
+    var d = 4;
+
+    function btnclick() {
+        let e = "abc";
+        b = b + 1;
+        for (let index = 0; index < 3; index++) {
+            d += b;
+        }
+        // insetText(d);
+        setTimeout(() => {
+            insetText(d);
+        }, 2000);
+    }
+    function insetText(value) {
+        varue = "d: " + value;
+        document.getElementsByTagName('span')[0].innerText = value;
+    }
+
+    function keypress(e) {
+        // setTimeout(() => {
+        //     e.value = e.value.toUpperCase();
+        // }, );
+        console.log('keypress');
+
+    }
+    function keydown(e) {
+        // setTimeout(function abc() {
+        //     e.value = e.value.toUpperCase();
+        // });
+        // outJs()
+        console.log('keydown');
+
+    }
+    function btnclick2() {
+        let arr = new Array(100);
+        let a = 123
+
+        try {
+            document.getElementById('btn2').className='abc' //dom断点
+        } catch (error) {
+
+        }
+        console.log('qwe');
+        outJs()
+        console.time()
+        for (let index = 0; index < arr.length; index++) {
+            arr[index] = index;
+        }
+        console.timeEnd()
+    }
+    document.getElementById('btn2').onclick = btnclick2;
+
+    document.body.ondblclick = function bdClick(params) {
+
+    }
+    document.body.onclick = function Click2(params) {
+
+    }
+    document.body.addEventListener('mouseenter', function msenter(params) {
+        console.log('mouseenter');
+    })
+
+
+</script>
+
+</html>

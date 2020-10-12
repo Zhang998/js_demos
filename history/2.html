@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <meta http-equiv="refresh" content="5"> -->
+    <title>2</title>
+</head>
+
+<body onload="on_load()" onunload="on_unload()">
+    <a href="3.html">去到3</a><br><br>
+    <a href="3.html?abc=123&def=456#/one/two">去到3（带search和hash）</a><br><br>
+    <div></div>
+</body>
+<script>
+    console.log(history.length);
+    if (location.search) {
+        let { groups: { age } } = /age=(?<age>\d+)/.exec(location.search)
+        document.getElementsByTagName('div')[0].innerText = age;
+    }
+    // let {name,age} = 
+    window.onpopstate = function (event) {
+        console.log('location: ' + document.location);
+        console.log('state: ' + JSON.stringify(event.state));
+    };
+    var paramsString = location.search;
+    var searchParams = new URLSearchParams(paramsString);
+    console.log(searchParams.get('age'));
+    console.log(searchParams.get('name'));
+
+    function on_load() {
+        console.log('页面加载完成');
+    }
+    function on_unload() {
+        console.log('页面销毁');
+    }
+</script>
+
+</html>

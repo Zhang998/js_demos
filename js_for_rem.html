@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js_for_rem</title>
+    <script>
+        (function (doc, win) {
+            var docEl = doc.documentElement,
+                resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+                recalc = function () {
+                    var clientWidth = docEl.clientWidth;
+                    if (!clientWidth) return;
+                    console.log(clientWidth);
+                    if (clientWidth > 414) {
+                        docEl.style.fontSize = '100px';
+
+                    } else {
+                        docEl.style.fontSize = 100 * (clientWidth / 375) + 'px';
+                    }
+                };
+            if (!doc.addEventListener) return;
+            win.addEventListener(resizeEvt, recalc, false);
+            if (doc.readyState === 'loading') {  // 此时加载尚未完成
+                doc.addEventListener('DOMContentLoaded', recalc, false);
+            } else {  // 此时`DOMContentLoaded` 已经被触发
+                recalc();
+            }
+        })(document, window);
+    </script>
+    <style>
+        body{
+            max-width: 414px;
+            margin: 0 auto;
+        }
+        div {
+            font-size: 0.32rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        我梦想改变这个世界；当我成熟以后，我发现我不能够改变这个世界,
+        我将目光缩短了些，决定只改变我的国家；当我进入暮年以后，
+        我发现我不能够改变我们的国家，我的最后愿望仅仅是改变一下我的家庭，
+        但是，这也不可能。当我现在躺在床上，行将就木时，
+        我突然意识到：如果一开始我仅仅去改变我自己，然后，我可能改变我的家庭；
+        在家人的帮助和鼓励下，我可能为国家做一些事情；
+        然后，谁知道呢?我甚至可能改变这个世界。
+    </div>
+
+</body>
+
+</html>

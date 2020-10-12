@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    //闭包 
+    //一个大函数里面有一个小函数 小函数使用了大函数的变量  并且在大函数返回了小函数
+    //减少变量的污染  容易造成内存泄露
+    //  对象  可以拥有的自己的属性
+    //函数  函数只有运行完成以后 里面的资源才会被(GC 垃圾回收机制)回收
+    // var person = {
+    //     username: "leson"
+    // }
+
+    function say() {
+        var num = 10;
+        return function() {
+            num++;
+            return num;
+        }
+    }
+
+    var result = say()();
+    alert(result);
+    var result = say()();
+    alert(result);
+    var result = say()();
+    alert(result);
+</script>
+
+</html>

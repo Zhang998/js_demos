@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>防抖函数</title>
+</head>
+
+<body>
+    <input type="text">
+</body>
+<script>
+    var ipt = document.getElementsByTagName('input')[0]
+    function fn() {
+        console.log(111);
+    }
+    ipt.onkeydown = debounce(fn, 2000, 123, 456);
+    function debounce(fn, delay = 1000) {
+        var timer = null;
+        var args = arguments;
+        console.log(args);
+        return function () {
+            var context = this;
+            clearTimeout(timer)
+            timer = setTimeout(() => {
+                fn.apply(context, args)
+            }, delay);
+        }
+    }
+</script>
+
+</html>

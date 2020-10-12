@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MutationObserver</title>
+</head>
+
+<body>
+    <ul>
+        <li>01</li>
+        <li>02</li>
+        <li>03</li>
+    </ul>
+</body>
+<script>
+    var myul = document.getElementsByTagName('ul')[0];
+    function deleteLi() {
+        if (myul.firstChild) {
+            myul.firstChild.remove()
+        }
+    }
+    // setInterval(() => {
+    //     deleteLi()
+    // }, 3000);
+    // setTimeout(() => {
+    //     myul.setAttribute('style','color:red')
+    // }, 3000);
+    setTimeout(() => {
+        myul.firstElementChild.textContent = 'ABC'
+    }, 3000);
+    var observer = new MutationObserver(function (mutations, obs) {
+        console.log(obs)
+        mutations.forEach(function (mutation) {
+            console.log(mutation);
+        })
+    })
+    var options = {
+        'childList': true,
+        'attributes': true,
+        'subtree': true,
+        'characterData': true,
+        'characterDataOldValue': true
+    }
+    observer.observe(myul, options)
+</script>
+
+</html>

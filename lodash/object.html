@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>object</title>
+    <script src="lodash.js"></script>
+</head>
+
+<body>
+
+</body>
+<script>
+    //_.assign(object, [sources])
+    //同Object.assign
+
+    //_.assignIn(object, [sources])
+    //会遍历和继承原型对象的属性
+
+    //_.assignInWith(object, sources, [customizer])
+    //??
+
+    //_.assignWith(object, sources, [customizer])
+
+    //_.at(object, [paths])
+    //通过路径取值
+    var object = { 'a': [{ 'b': { 'c': 3 } }, 4] };
+    let obj1 = _.at(object, ['a[0].b.c', 'a[1]']);
+    // console.log(obj1);
+
+    //_.create(prototype, [properties])
+
+    //_.defaults(object, [sources])
+
+    //_.defaultsDeep(object, [sources])
+    //递归合并所有属性,这个应该用的到
+    let obj2 = _.defaultsDeep({ 'a': { 'b': 2 } }, { 'a': { 'b': 1, 'c': 3 } });
+    // console.log(obj2);
+
+    //_.findKey(object, [predicate=_.identity])
+    //返回元素的key而不是元素本身
+
+    //_.findLastKey(object, [predicate=_.identity])
+    //同上，只不过是反方向遍历
+
+    //_.forIn(object, [iteratee=_.identity])
+
+    //_.forInRight(object, [iteratee=_.identity])
+
+    //_.forOwn(object, [iteratee=_.identity])
+    //遍历自身的可枚举属性
+
+    //_.forOwnRight(object, [iteratee=_.identity])
+
+    //_.functions(object)
+    //有啥用？
+
+    //_.functionsIn(object)
+    //有啥用？
+
+    //_.get(object, path, [defaultValue])
+    //根据路径获取值
+
+    //_.has(object, path)
+    //有啥用？
+
+    //_.hasIn(object, path)
+
+    //_.invert(object)
+    //创建一个键值颠倒的对象
+
+    //_.invertBy(object, [iteratee=_.identity])
+    //键值颠倒且分组
+
+    //_.invoke(object, path, [args])
+    //调用object对象path上的方法
+    var object = { 'a': [{ 'b': { 'c': [1, 2, 3, 4] } }] };
+    let obj3 = _.invoke(object, 'a[0].b.c.slice', 1, 3);
+    // console.log(obj3);
+
+    //_.keys(object)
+
+    //_.keysIn(object)
+
+    //_.mapKeys(object, [iteratee=_.identity])
+    //有啥用？
+
+    //_.mapValues(object, [iteratee=_.identity])
+    //这个应该用的到
+    var users = {
+        'fred': { 'user': 'fred', 'age': 40 },
+        'pebbles': { 'user': 'pebbles', 'age': 1 }
+    };
+    let obj4 = _.mapValues(users, function (o) { return o.age; });
+    // console.log(obj4);
+
+    //_.merge(object, [sources])
+
+    //_.mergeWith(object, sources, customizer)
+
+    //_.omit(object, [props])
+    //可以理解为删除object对象的属性
+
+    //_.omitBy(object, [predicate=_.identity])
+    var object = { 'a': 1, 'b': '2', 'c': 3 };
+    let obj5 = _.omitBy(object, function (value,key) {
+        return typeof value === 'string'
+    })
+    console.log(obj5);
+
+    //_.pick(object, [props])
+    //创建一个从 object 中选中的属性的对象。
+
+    //_.pickBy(object, [predicate=_.identity])
+    
+    //_.result(object, path, [defaultValue])
+    //如果路径指向一个函数，就执行这个函数
+
+    //_.set(object, path, value)
+    //设置值
+
+    //_.setWith(object, path, value, [customizer])
+    //设置值
+
+    //_.toPairs(object)
+    //键值对转二维数组
+
+    //_.toPairsIn(object)
+    //同上
+
+    //_.transform(object, [iteratee=_.identity], [accumulator])
+    //???
+
+    //_.unset(object, path)
+    //移除object对象 path 路径上的属性。
+
+    //_.update(object, path, updater)
+    //该方法类似 _.set，除了接受updater以生成要设置的值
+
+    //_.updateWith(object, path, updater, [customizer])
+    //???
+
+    //_.values(object)
+
+    //_.valuesIn(object)
+
+
+</script>
+
+</html>

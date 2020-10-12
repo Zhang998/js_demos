@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    //堆和栈(深拷贝和拷贝)
+    //值类型(string number boolean) 栈 引用类型(对象)  堆
+
+    // var username = "leson";
+    // username = "lili";
+    // alert(username);
+    // var list = [1, 2, 3];
+    // var arr = list; //浅拷贝
+    // arr.push(4);
+    // alert(list);
+
+    var date = new Date();
+    var tempDate = date;
+    tempDate.setFullYear(2000);
+    // alert(date.getFullYear());
+    // alert(tempDate.getFullYear());
+
+
+    var list = [1, 2, 3];
+    // var arr = [];
+    // for (var item of list) {
+    //     arr.push(item);
+    // }
+    // var arr = [...list];
+    // var arr = list.slice();
+    // var arr = list.concat();
+
+    var str = JSON.stringify(list);
+    var arr = JSON.parse(str);
+
+    arr.push(4);
+    console.log(arr);
+    console.log(list);
+    
+
+    
+
+
+</script>
+
+</html>

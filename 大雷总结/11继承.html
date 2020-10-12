@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    //私有属性
+    var person = {
+            say: function() {
+                alert(this.username);
+            }
+        }
+        //const
+    var yp = Object.create(person, {
+        username: {
+            value: "leson",
+            writable: true
+        }
+    })
+    yp.username = "lili";
+    yp.say();
+</script>
+
+</html>

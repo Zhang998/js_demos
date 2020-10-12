@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>简易轮播</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .boss {
+            width: 520px;
+            height: 280px;
+            margin: 100px auto;
+            border: 1px solid;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .imgBox {
+            width: 520px;
+            height: 280px;
+
+        }
+
+        .imgBox div {
+            display: none;
+        }
+
+        .imgBox img {
+            width: 520px;
+            vertical-align: top;
+        }
+
+        .nav {
+            position: absolute;
+            right: 5px;
+            bottom: 5px;
+            background: #ccc;
+            border-radius: 10px;
+
+        }
+
+        .nav li {
+            list-style: none;
+            width: 10px;
+            height: 10px;
+            line-height: 10px;
+            border-radius: 20%;
+            float: left;
+            margin: 5px;
+            padding: 5px;
+            text-align: center;
+            border: 1px solid;
+            font-size: 10px;
+        }
+
+        .nav .active {
+            background-color: aqua;
+        }
+
+        .imgBox .active {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="boss">
+        <ul class="nav">
+            <li class="active">春</li>
+            <li>夏</li>
+            <li>秋</li>
+            <li>冬</li>
+        </ul>
+        <div class="imgBox">
+            <div class="active"><img src="images/01.jpg" alt=""></div>
+            <div><img src="images/02.jpg" alt=""></div>
+            <div><img src="images/03.jpg" alt=""></div>
+            <div><img src="images/04.jpg" alt=""></div>
+        </div>
+    </div>
+</body>
+<script>
+    var nav = document.getElementsByClassName("nav")[0];
+    var liList = nav.children;
+    var imgBox = document.getElementsByClassName("imgBox")[0];
+    var imgList = imgBox.children;
+    console.log(nav, liList, imgBox, imgList);
+    var timer,index = 0;
+    function show(index) {
+        for (var i = 0; i < imgList.length; i++) {
+            liList[i].className = "";
+            imgList[i].className = "";
+        }
+        liList[index].className = "active";
+        imgList[index].className = "active";
+    }
+    function move() {
+        index++;
+        if (index == 4) {
+            index = 0;
+        }
+        show(index);
+    }
+//  timer = setInterval(move, 1000);
+    for (let j = 0; j < liList.length; j++) {
+        let li = liList[j];
+        li.setAttribute("index", j);
+        console.log(j);
+        li.onmouseover = function () {
+            index = j - 1;
+            move(index);
+            clearInterval(timer);
+            return false;
+        }
+        li.onmouseout = function () {
+            timer = setInterval(move, 1000);
+        }
+    }
+    imgBox.onmouseover = function () {
+        clearInterval(timer);
+    }
+    imgBox.onmouseout = function () {
+        timer = setInterval(move, 1000);
+
+    }
+
+</script>
+
+</html>

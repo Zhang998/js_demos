@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Lodash</title>
+  <script src="lodash.js"></script>
+  <style>
+    div {
+      height: 300px;
+      border: 10px solid;
+      font-size: 50px;
+    }
+  </style>
+</head>
+
+<body>
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+  <div>4</div>
+  <div>5</div>
+</body>
+<script>
+  console.log(_);
+
+  let a = _.compact(['a', 'b', 'c', 'd']);
+  // let b=_.chunk(['a', 'b', 'c', 'd'],2);
+  let b = _.drop([1, 2, 3], 2);
+  let c = _.chunk(['a', 'b', 'c', 'd'], 2);
+  console.log(a);
+  console.log(b);
+  console.log(c);
+  var users = [
+    { 'user': 'barney', 'active': true },
+    { 'user': 'jack', 'active': true },
+    { 'user': 'fred', 'active': false },
+    { 'user': 'pebbles', 'active': false }
+  ];
+  let d = _.dropRightWhile(users, { 'user': 'pebbles', 'active': false });
+  let e = _.dropRightWhile(users, ['active', false]);
+  // console.log(d);
+  // console.log(e);
+
+
+  let arr = [3, 4, 5]
+  const last = arr => arr.slice(-1)[0];
+  const shuffle = arr => arr.sort(() => Math.random() - 0.5);
+  // console.log(last(arr));
+  // console.log(shuffle(arr));
+
+
+  const scrollToTop = _ => {
+    const c = document.documentElement.scrollTop || document.body.scrollTop;
+    if (c > 0) {
+      window.requestAnimationFrame(scrollToTop);
+      window.scrollTo(0, c - c / 8);
+    }
+  };
+
+  setTimeout(() => {
+    scrollToTop()
+  }, 5000);
+  const uuid = _ =>
+    ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c =>
+      (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+    );
+  console.log(uuid());
+  let aa = 1;
+  let bb = 2;
+  let cc = 3;
+  [aa, bb, cc] = [cc, bb, aa]
+  // console.log(aa, bb, cc);
+
+
+  const speak = message => {
+    const msg = new SpeechSynthesisUtterance(message);
+    msg.voice = window.speechSynthesis.getVoices()[0];
+    window.speechSynthesis.speak(msg);
+  };
+
+  // speak('Hello, World')
+  function f1() {
+    console.log('qwe');
+    console.count('执行')
+  }
+  // var debounced = _.debounce(f1, 1000);
+  // window.onclick = debounced
+  window.onclick = _.before(5, f1)
+  // window.onclick = f1
+
+  // var saves = ['profile', 'settings'];
+ 
+//  var done = _.after(saves.length, function() {
+//    console.log('done saving!');
+//  });
+  
+//  _.forEach(saves, function(type) {
+//    asyncSave({ 'type': type, 'complete': done });
+//  });
+//  _.before(5, addContactToList)
+
+
+
+</script>
+
+</html>

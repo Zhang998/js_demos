@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1</title>
+</head>
+
+<body onunload="on_unload()">
+    <a href="2.html?name=zhangsan&age=18">去到2（带search）</a><br><br>
+    <a href="2.html?name=zhangsan&age=36#aaa">去到2(带search和hash)</a><br><br>
+    <a href="http://www.baidu.com">百度</a><br><br>
+    <button onclick="l_assign()">Location.assign()</button><br><br>
+    <button onclick="l_replace()">Location.replace()</button><br><br>
+    <button onclick="l_href()">Location.href</button><br><br>
+    <button onclick="location_()">location</button><br><br>
+</body>
+<script>
+    setTimeout(() => {      //清除掉search
+        window.history.replaceState(null, '', `${location.pathname}${location.hash}`);
+    }, 4000);
+    console.log(history.length);
+    window.onpopstate = function (event) {
+        console.log('location: ' + document.location);
+        console.log('state: ' + JSON.stringify(event.state));
+    };
+    window.name = '好好学习';
+    function l_assign(){
+        location.assign('http://192.168.0.30:5501/2.html?name=zhangsan&age=36#aaa')
+    }
+    function l_replace(){
+        location.replace('http://192.168.0.30:5501/2.html?name=zhangsan&age=36#aaa')
+    }
+    function l_href(){
+        location.href  = 'http://192.168.0.30:5501/2.html?name=zhangsan&age=36#aaa';
+    }
+    function location_() {
+        location = 'http://192.168.0.30:5501/2.html?name=zhangsan&age=36#aaa'
+    }
+    // function on_unload() {
+    //     sessionStorage.clear();
+    // }
+</script>
+
+</html>

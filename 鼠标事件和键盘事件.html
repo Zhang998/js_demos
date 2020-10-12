@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>鼠标事件</title>
+    <style>
+        #content {
+            width: 400px;
+            height: 400px;
+            border: 1px solid red;
+            margin: 50px;
+            color: blue;
+        }
+
+        #child {
+            width: 200px;
+            height: 200px;
+            border: 8px solid green;
+            margin: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1></h1>
+    <div id="content" draggable="true">
+        <div id="child">asdf</div>
+    </div>
+
+
+</body>
+<script>
+    var test_div = document.getElementById("content");
+    var text_h1 = document.querySelectorAll("h1")[0];
+    // var 3 = aaa;
+    console.log(123);
+    test_div.onmousedown = function (ev) {
+        text_h1.innerHTML = "按下触发"
+        console.log("按下触发");
+        var oEvent = ev || event;
+        console.log(oEvent.button);
+        console.log(oEvent.altKey);
+        console.log("距离点击目标左边", oEvent.offsetX);
+        console.log("距离点击目标上边", oEvent.offsetY);
+    }
+    test_div.onclick = function (e) {
+        text_h1.innerHTML = "点击触发"
+        console.log("点击触发");
+    }
+    test_div.onmouseup = function () {
+        text_h1.innerHTML = "抬起触发"
+        console.log("抬起触发");
+        setTimeout(() => {
+            
+        }, 1000);
+    }
+    // test_div.ondblclick = function () {
+    //     text_h1.innerHTML = "双击触发"
+    //     console.log("双击触发");
+    // }
+
+
+    // test_div.onmouseover = function () {
+    //     text_h1.innerHTML = "onmouseover进入"
+    //     console.log("onmouseover进入");
+    // }
+    // test_div.onmousemove = function () {
+    //     console.log("正在移动···");
+
+    //     setTimeout(() => {
+    //         text_h1.innerHTML = "移动"
+    //     }, 2000)
+    // }
+    // test_div.onmouseout = function () {
+    //     text_h1.innerHTML = "onmouseout移出"
+    //     console.log("onmouseout移出");
+    // }
+
+    test_div.onmouseenter = function () {
+        text_h1.innerHTML = "mouseenter进入"
+        console.log("mouseenter进入");
+    }
+    test_div.onmouseleave = function () {
+        text_h1.innerHTML = "mouseleave移出"
+        console.log("mouseleave移出");
+    }
+
+    // document.body.addEventListener(
+    //     'click',
+    //     function (e) {
+    //         console.log("点击位置距离文档左边", e.pageX);
+    //         console.log("点击位置距离文档顶部", e.pageY);
+    //     },
+    //     false
+    // );
+
+    // document.addEventListener('click', function (e) {
+    //     console.log("是否按下CapsLock", e.getModifierState('CapsLock'));
+    //     console.log("是否按下Shift", e.getModifierState('Shift'));
+    // }, false);
+
+    function showChar(e) {
+        var e = e || event;
+        console.log("ALT: " + e.altKey);
+        console.log("CTRL: " + e.ctrlKey);
+        console.log("Meta: " + e.metaKey);
+        console.log("shiftKey: " + e.shiftKey);
+        let str = "KeyboardEvent: key='" + e.key + "' | code='" + event.code + "'" + " | location='" + event.location +
+            "''";
+        console.log(str);
+    }
+    // document.body.addEventListener('keyup',showChar,false)
+    // document.body.addEventListener('keydown', showChar, false)
+    document.body.addEventListener('click', showChar, false)
+
+    // KeyboardEvent.getModifierState()
+    // function getModifierState(event) {
+    //     if (
+    //         event.getModifierState('Control') +
+    //         event.getModifierState('Alt') +
+    //         event.getModifierState('Meta') > 1
+    //     ) {
+    //         return;
+    //     }
+    //     console.log("qwe");
+
+    // }
+    // document.body.addEventListener('keydown', getModifierState, false)
+
+    // var wheelEvent = new WheelEvent(type, options);
+    // var wheelEvent = new WheelEvent('wheel');
+    // console.log('WheelEvent.deltaX',WheelEvent.deltaX);
+    // document.body.despatchEvent(wheelEvent)
+
+
+    test_div.addEventListener('dragstart', function (e) {
+        this.style.backgroundColor = 'red';
+    }, false);
+    test_div.addEventListener('dragend', function (e) {
+        this.style.backgroundColor = 'green';
+    }, false);
+</script>
+
+</html>

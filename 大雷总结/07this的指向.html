@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    function say() {
+        alert(this);
+    }
+        // say();
+        new say();
+        // document.onclick = say;
+        // say.call("666");
+
+    function fn() {
+        this.username = "leson";
+        this.say = function() {
+            return function() {
+                alert(this.username);
+            }
+        }
+    }
+    var f = new fn();
+    var f1 = f.say();
+    f1.bind({
+        username: "lili"
+    })();
+</script>
+
+</html>

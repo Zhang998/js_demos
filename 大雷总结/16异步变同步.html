@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    //异步变同步
+    //有多少个接口 按照顺序请求
+    //Promise 
+    //async  await  +fetch 
+
+    //手写一个promise
+    // function fn() {
+
+    //     var p = new Promise(function(resolve, reject) {
+    //         setTimeout(() => {
+                
+    //         // resolve("666");
+    //         reject("888")
+    //         }, 2000);
+    //     })
+    //     return p;
+
+    // }
+    // fn().then(function(result) {
+    //     alert(result);
+    // },function(result) {
+    //     alert(result);
+    // })
+
+    function MyPromise() {
+
+
+    }
+    MyPromise.prototype.then = function(fn1, fn2) {
+        var num = Math.round(Math.random() * 100);
+        if (num > 50) {
+            fn1(num + "大于等于50");
+        } else {
+            fn2(num + "小于50");
+        }
+    }
+
+    var my = new MyPromise();
+    my.then(function(result) {
+        alert("成功的结果:" + result);
+    }, function(result) {
+        alert("失败的结果:" + result);
+    })
+</script>
+
+</html>

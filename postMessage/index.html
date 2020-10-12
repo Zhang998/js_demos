@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>index</title>
+</head>
+
+<body>
+    <!-- index.html -->
+    <iframe src="./frame1.html" frameborder="1"></iframe>
+    <iframe src="http://192.168.0.30:5500/frame2.html" frameborder="1" id='iframe2'></iframe>
+    <script>
+        // console.log(document.getElementById("iframe2").contentWindow.document);
+        window.addEventListener('message', function (e) {
+            console.log(e.data)
+        }, false)
+
+        var frame1 = window.frames[0];
+        window.onload = function () {
+            setInterval(() => {
+                var obj = {
+                    name: 'Jacks',
+                    age:Math.random()
+                };
+                frame1.postMessage(JSON.stringify({ key: 'storage', data: obj }), 'http://192.168.0.30:5500/frame1.html');
+
+            }, 3000);
+        }
+
+
+        setTimeout(() => {
+            // var src = location.origin + '#' + 'abc';
+            // var src = document.getElementById('iframe2').src + '#' + '这是父窗口传来的hash';
+            // document.getElementById('iframe2').src = src;
+        }, 3000);
+
+
+
+        window.onhashchange = checkMessage;
+        function checkMessage() {
+            var message = window.location.hash;
+            console.log(decodeURIComponent(message));
+        }
+    </script>
+</body>
+
+</html>

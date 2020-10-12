@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array</title>
+    <script src="lodash.js"></script>
+</head>
+
+<body>
+
+</body>
+<script>
+    //_.chunk 
+    //创建二维数组
+
+    //_.compact(array)
+    //返回非假值元素
+
+    //_.concat(array, [values])
+    //类似数组concat,没啥用
+
+    //_.difference(array, [values])
+    //貌似有用
+    var arr1 = _.difference([3, 2, 1], [4, 2]);
+    // console.log(arr1);
+
+    //_.differenceBy(array, [values], [iteratee=_.identity])
+    //同上，只是比较的值先要处理
+
+    //_.differenceWith(array, [values], [comparator])
+    //接受2个参数
+    var arr1 = [{ 'x': 1, 'y': 3, 'y': 2 }, { 'x': 2, 'y': 1 }];
+    var arr2 = _.differenceWith(arr1, [{ 'x': 1, 'y': 2 }], _.isEqual);
+
+    //_.drop(array, [n=1])
+    //数组切片,没啥用
+
+    //_.dropRight(array, [n=1])
+    //同上，没啥用
+
+    //_.dropRightWhile(array, [predicate=_.identity])
+    //选定条件剔除数组的元素
+    var users = [
+        { 'user': 'barney', 'active': true },
+        { 'user': 'pebbles', 'active': false },
+        { 'user': 'fred', 'active': false },
+        { 'user': 'pebbles', 'active': false },
+        { 'user': 'pebbles', 'active': false },
+    ];
+    var arr3 = _.dropRightWhile(users, { 'user': 'pebbles', 'active': false });
+
+    //_.dropWhile(array, [predicate=_.identity])
+    //类似上面的用法
+
+    //_.fill(array, value, [start=0], [end=array.length])
+    //数组填充
+
+    //_.findIndex(array, [predicate=_.identity], [fromIndex=0])
+    //类似原生方法findIndex
+
+    //_.findLastIndex(array, [predicate=_.identity], [fromIndex=array.length-1])
+    //类似上面
+
+    //_.flatten(array)
+    //数组拉平
+
+    //_.flattenDeep(array)
+    //深度拉平
+
+    //_.flattenDepth(array, [depth=1])
+    //传参数拉平
+
+    //_.fromPairs(pairs)
+    //数组转对象
+
+    //_.head(array)
+    //有啥用？
+
+    //_.indexOf(array, value, [fromIndex=0])
+    //有啥用？
+
+    //_.initial(array)
+    //有啥用？
+
+    //_.intersection([arrays])
+    //数组取交集
+    _.intersection([2, 1], [4, 2], [1, 2]);
+    // => [2]
+
+    //_.intersectionBy([arrays], [iteratee=_.identity])
+    //同上，只是参数会先处理再比较
+
+    //_.intersectionWith([arrays], [comparator])
+    //同上，只是可以比较2个参数
+
+    //_.join(array, [separator=','])
+
+    //_.last(array)
+
+    //_.lastIndexOf(array, value, [fromIndex=array.length-1])
+
+    //_.nth(array, [n=0])
+
+    //_.pull(array, [values])
+    var array = [1, 2, 3, 1, 2, 3];
+    var arr4 = _.pull(array, ...[2, 3]);
+    var arr4 = _.pull(array, 2, 3);
+
+    //_.pullAll(array, values)
+    //同上，参数是数组
+
+    //_.pullAllBy(array, values, [iteratee=_.identity])
+    //同上
+    var array = [{ 'x': 1, 'y': 2 }, { 'x': 2 }, { 'x': 3 }, { 'x': 1 }];
+    var arr5 = _.pullAllBy(array, [{ 'x': 1 }, { 'x': 3 }], 'x');
+
+    //_.pullAllWith(array, values, [comparator])
+    //传2个限定参数
+    var array = [{ 'x': 1, 'y': 2 }, { 'x': 3, 'y': 4 }, { 'x': 3, 'y': 6 }];
+    var arr5 = _.pullAllWith(array, [{ 'x': 3, 'y': 4 }], _.isEqual);
+
+    //_.pullAt(array, [indexes])
+    //根据索引删除数组元素
+
+    //_.remove(array, [predicate=_.identity])
+    //根据条件删除数组元素
+
+    //_.reverse(array)
+    //翻转数组
+
+    //_.slice(array, [start=0], [end=array.length])
+
+    //_.sortedIndex(array, value)
+    //有啥用？？
+
+    //_.sortedIndexBy(array, value, [iteratee=_.identity])
+    //指定字段排序的位置
+
+    //_.sortedIndexOf(array, value)
+    //没看懂？？？
+
+    //_.sortedLastIndex(array, value)
+    //有啥用？
+
+    //_.sortedLastIndexBy(array, value, [iteratee=_.identity])
+    //根据指定排序字段，查询要插入的位置
+    var objects = [{ 'x': 4 }, { 'x': 5 }, { 'x': 6 }];
+
+    var num1 = _.sortedLastIndexBy(objects, { 'x': 5 }, function (o) { return o.x; });
+
+    //_.sortedUniq(array)
+    //返回唯一值，并且排序
+
+    //_.sortedUniqBy(array, [iteratee])
+    //将值处理后，再去重排序
+
+    //_.tail(array)
+    //有啥用？直接slice
+
+    //_.take(array, [n=1])
+    //提取数组元素，直接用splice
+
+    //_.takeRight(array, [n=1])
+    //同上
+
+    //_.takeRightWhile(array, [predicate=_.identity])
+    //根据条件切除
+
+    //_.takeWhile(array, [predicate=_.identity])
+    //同上，只是方向不同
+
+    //_.union([arrays])
+    //返回并集，唯一值
+    var arr6 = _.union([2], [1, 2], [1, 2, 3, 4, 5]);
+
+    //_.unionBy([arrays], [iteratee=_.identity])
+    //将值处理过后再比较，取并集
+
+    //_.unionWith([arrays], [comparator])
+    //限定2个参数
+
+    //_.uniq(array)
+    //数组去重
+
+    //_.uniqBy(array, [iteratee=_.identity])
+    //值处理后再去重
+    function fn2(params) {
+        return params.toString().length
+    }
+    var arr7 = _.uniqBy([2.1, 1.21, 2.333], fn2);
+
+    //_.uniqWith(array, [comparator])
+    //传2个限定参数
+
+    //_.unzip(array)
+    //zip的逆方法，应用场景呢？？
+
+    //_.unzipWith(array, [iteratee=_.identity])
+    //将上面返回的值作处理
+
+    //_.without(array, [values])
+    //剔除指定的值
+
+    //_.xor([arrays])
+    //取交集
+
+    //_.xorBy([arrays], [iteratee=_.identity])
+    //处理值以后取交集
+
+    //_.xorWith([arrays], [comparator])
+    //限定2个参数
+
+    //_.zip([arrays])
+    //数组的“压缩”
+
+    //_.zipObject([props=[]], [values=[]])
+    //数组转对象，建和值分别在一个数组里面
+    var obj2 = _.zipObject(Object.keys(window), Object.values(window));
+    var obj2 = _.zipObject(['a','b','c'], [1,2,[3,[4]]]);
+    console.table(obj2,1);
+
+    //_.zipObjectDeep([props=[]], [values=[]])
+    //支持属性路径
+
+    //_.zipWith([arrays], [iteratee=_.identity])
+    //指定方法压缩
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+</html>

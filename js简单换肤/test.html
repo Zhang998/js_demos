@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>简单换肤</title>
+    <!-- <link rel="stylesheet" href="./css/default.css" id="changelink"> -->
+    <style>
+        :root {
+            --theme-color: rgba(255, 255, 0, .3);
+        }
+
+        body {
+            background-color: var(--theme-color);
+        }
+    </style>
+
+    <style>
+        /* .default {
+            background-color: rgba(255, 255, 0, .3);
+        }
+
+        .default span {
+            font-size: 24px;
+        }
+
+        .red {
+            background-color: rgb(224, 109, 109);
+        }
+
+        .red span {
+            font-size: 32px;
+            font-style: italic;
+        }
+
+        .green {
+            background-color: rgb(91, 204, 100);
+        }
+
+        .green span {
+            font-size: 24px;
+        } */
+    </style>
+    <script>
+        var csslink = document.getElementById("changelink");
+
+        //初始化主题
+        // loadtheme();
+
+        function changetheme(color) {
+            csslink.href = "css/" + color + ".css";
+            //保存主题到cookies
+            document.cookie = "theme=" + color;
+        }
+
+        function loadtheme() {
+            //从cookies读取主题
+            var themevalue = document.cookie.split(";")[0].split("=")[1];
+            if (themevalue == null) {
+                csslink.href = "css/default.css";
+            } else {
+                csslink.href = "css/" + themevalue + ".css";
+            }
+        }
+    </script>
+    <script>
+        function changetheme3(color = 'default') {
+            sessionStorage.theme = color;
+            document.body.className = color;
+        }
+        document.addEventListener('DOMContentLoaded', function () {
+            changetheme3(sessionStorage.theme)
+        })
+    </script>
+</head>
+
+<body class="theme-default">
+    <button onclick="changetheme('default')">默认</button>
+    <button onclick="changetheme('red')">红色</button>
+    <button onclick="changetheme('green')">绿色</button>
+    --切换外部样式表换肤(有白屏闪动)
+    <hr>
+    <br>
+    <button onclick="changetheme2()">默认</button>
+    <button onclick="changetheme2('rgb(224, 109, 109)')">红色</button>
+    <button onclick="changetheme2('rgb(91, 204, 100)')">绿色</button>
+    --CSS 变量换肤(要注册很多css变量)
+    <hr>
+    <br>
+    <button onclick="changetheme3()">默认</button>
+    <button onclick="changetheme3('red')">红色</button>
+    <button onclick="changetheme3('green')">绿色</button>
+    --命名空间，权重覆盖(有白屏闪动)
+    <hr>
+    <br>
+    <span>我梦想改变这个世界；当我成熟以后，我发现我不能够改变这个世界,
+        我将目光缩短了些，决定只改变我的国家；当我进入暮年以后，
+        我发现我不能够改变我们的国家，我的最后愿望仅仅是改变一下我的家庭，
+        但是，这也不可能。当我现在躺在床上，行将就木时，
+        我突然意识到：如果一开始我仅仅去改变我自己，然后，我可能改变我的家庭；
+        在家人的帮助和鼓励下，我可能为国家做一些事情；
+        然后，谁知道呢?我甚至可能改变这个世界。</span>
+
+</body>
+<script>
+    function changetheme2(color = 'rgba(255,255, 0,.3)') {
+        console.log(document.documentElement.style);
+        document.documentElement.style.setProperty("--theme-color", color);
+    }
+</script>
+
+</html>

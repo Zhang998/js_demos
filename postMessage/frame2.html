@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>frame2</title>
+</head>
+
+<body>
+    <h1>iframe2 page</h1>
+    <script>
+        // console.log(window.parent.document.body);
+        window.onhashchange = checkMessage;
+        function checkMessage() {
+            var message = window.location.hash;
+            console.log(decodeURIComponent(message));
+        }
+
+
+        setTimeout(() => {
+            // parent.location.href = location.origin + '#' + '这是frame2传来的hash';
+        }, 2000);
+    </script>
+</body>
+
+</html>

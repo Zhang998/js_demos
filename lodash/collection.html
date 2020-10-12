@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>collection</title>
+    <script src="lodash.js"></script>
+</head>
+
+<body>
+    <script>
+        //_.countBy(collection, [iteratee=_.identity])
+        //对数组元素处理后分类计数
+        let obj1 = _.countBy([6.1, 4.2, 6.3], Math.floor);
+        // console.log(obj1);
+
+        //_.every(collection, [predicate=_.identity])
+        //判断数组的每一个元素
+        var users = [
+            { 'user': 'barney', 'age': 40, 'active': true },
+            { 'user': 'fred', 'age': 40, 'active': true },
+        ];
+        // let b1 = _.every(users, { 'user': 'barney', 'active': false })
+        // let b1 = _.every(users, ['age', 40]);
+        // let b1 = _.every(users, 'active');
+        // console.log(b1);
+
+        //_.filter(collection, [predicate=_.identity])
+        //类似于数组的filter
+
+        //_.find(collection, [predicate=_.identity], [fromIndex=0])
+        var users = [
+            { 'user': 'barney', 'age': 36, 'active': true },
+            { 'user': 'barney', 'age': 36, 'active': true },
+            { 'user': 'fred', 'age': 40, 'active': false },
+            { 'user': 'pebbles', 'age': 1, 'active': true }
+        ];
+        let b1 = _.find(users, function (o) { return o.age < 40; });
+        console.log(b1);
+
+        //_.findLast(collection, [predicate=_.identity], [fromIndex=collection.length-1])
+        //同上，只是方向不同
+
+        //_.flatMap(collection, [iteratee=_.identity])
+        //创建扁平化数组
+
+        //_.flatMapDeep(collection, [iteratee=_.identity])
+        //同上，创建深度扁平化数组
+
+        //_.flatMapDepth(collection, [iteratee=_.identity], [depth=1])
+        //类似上面，返回新扁平化数组。
+
+        //_.forEach(collection, [iteratee=_.identity])
+
+        //_.forEachRight(collection, [iteratee=_.identity])
+
+        //_.groupBy(collection, [iteratee=_.identity])
+        //对数组元素统计分组
+        let b2 = _.groupBy([6.1, 4.2, 6.3], function (value) {
+            return value + 1;
+        });
+        // console.log(b2);
+
+        //_.invokeMap(collection, path, [args])
+        //分组处理
+
+        //_.keyBy(collection, [iteratee=_.identity])
+        //返回一个组成聚合的对象。 但是key只对于一个元素，与_groupBy返回所有不同
+
+        //_.map(collection, [iteratee=_.identity])
+        //类似数组map
+
+        //_.orderBy(collection, [iteratees=[_.identity]], [orders])
+        var users = [
+            { 'user': 'fred', 'age': 48 },
+            { 'user': 'barney', 'age': 34 },
+            { 'user': 'fred', 'age': 40 },
+            { 'user': 'barney', 'age': 36 }
+        ];
+        // 以 `user` 升序排序 再  `age` 以降序排序。
+        let b3 = _.orderBy(users, ['user', 'age'], ['asc', 'desc']);
+        console.log(b3);
+
+        //_.partition(collection, [predicate=_.identity])
+        //返回真值和假值分组后的数组
+
+        //_.reduce(collection, [iteratee=_.identity], [accumulator])
+        
+        //_.reduceRight(collection, [iteratee=_.identity], [accumulator])
+
+        //_.reject(collection, [predicate=_.identity])
+        //filter方法的反向方法，有啥用？？
+
+        //_.sample(collection)
+        //从数组中获得一个数据获得一个随机元素
+
+        //_.sampleSize(collection, [n=1])
+        //从数组中获得N个随机元素
+
+        //_.shuffle(collection)
+        //返回一个被打乱的集合
+
+        //_.size(collection)
+
+        //_.some(collection, [predicate=_.identity])
+
+        //_.sortBy(collection, [iteratees=[_.identity]])
+        //升序排列
+
+
+
+    </script>
+
+</body>
+
+</html>
