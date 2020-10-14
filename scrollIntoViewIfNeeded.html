@@ -27,6 +27,32 @@
             border: 5px solid;
             background: green;
         }
+
+
+        ul {
+            width: 80vw;
+            height: 80px;
+            border: 10px solid red;
+            font-size: 16px;
+            margin: 20px;
+            overflow-x: scroll;
+            overflow-y: hidden;
+            display: flex;
+            flex-wrap: nowrap;
+        }
+
+        li {
+            flex: none;
+            height: 70px;
+            line-height: 70px;
+            /* float: left; */
+            list-style: none;
+            width: 30%;
+            font-size: 32px;
+            border: 1px solid black;
+            text-align: center;
+
+        }
     </style>
 </head>
 
@@ -43,7 +69,21 @@
         <div class="intoview">9</div>
     </div>
 
-    <div id="test" class="test2"></div>
+
+    <ul class="test2">
+        <li>01</li>
+        <li>02</li>
+        <li>03</li>
+        <li>04</li>
+        <li>05</li>
+        <li>06</li>
+        <li>07</li>
+        <li>08</li>
+        <li>09</li>
+        <li>10</li>
+        <li>11</li>
+    </ul>
+
 
     <script type="text/javascript">
         var div_list = document.getElementsByClassName("intoview");
@@ -59,14 +99,26 @@
                 console.log(item.clientHeight);
 
                 // item.scrollIntoViewIfNeeded(true);
-                item.scrollIntoViewIfNeeded({
-                    behavior: "smooth",
-                    block: "start",
-                    inline: "nearest"
-                });
+                item.scrollIntoView(true);
+                // item.scrollIntoView({
+                //     behavior: "smooth",
+                //     block: "start",
+                //     inline: "nearest"
+                // });
             }
 
 
+        }
+
+        var li_list = document.querySelectorAll('li');
+        for (const item of li_list) {
+            item.onclick = function () {
+                item.scrollIntoView({
+                    behavior: "smooth",
+                    inline: "center"
+                });
+
+            }
         }
     </script>
 </body>
