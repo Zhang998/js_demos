@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>async</title>
+</head>
+
+<body>
+    <input type="text" id="input-box">
+</body>
+<script>
+    // async function timeout() {
+    //     if (!true) {
+    //         return "成功";
+    //     } else {
+    //         throw new Error("失败");
+    //     }
+    // }
+    // timeout().then(result => {
+    //     console.log(result);
+    // }, reject => {
+    //     console.log(reject)
+    // })
+    // console.log('虽然在后面，但是我先执行');
+
+    //----------------------------------------
+    async function timeout(flag) {
+        // if (flag) {
+        //     return 'hello world'
+        // } else {
+            let abc = this.aser.toString();
+            throw 'my god, failure'
+            return 'my god, failure'
+        // }
+    }
+    // console.log(timeout(true)) // 调用Promise.resolve() 返回promise 对象。
+    console.log(timeout(false).catch(console.log)); // 调用Promise.reject() 返回promise 对象。
+
+    //----------------------------------------
+    // 2s 之后返回双倍的值
+    // function doubleAfter2seconds(num) {
+    //     return new Promise((resolve, reject) => {
+    //         setTimeout(reject,2000,num*2);
+    //         setTimeout(resolve,2000,num*2);
+    //     })
+    // }
+    // async function testResult() {
+    //     try {
+    //         await doubleAfter2seconds(30);  //如果await后面的promise对象返回reject，会将reject的参数带到catch里
+    //     } catch (error) {
+    //         console.log(error,'cc');
+    //     }
+        // return await doubleAfter2seconds(30);
+        // let result = await doubleAfter2seconds(30);
+        // console.log(result);
+        // return new Error('失败')
+        // throw 123
+    //     return "123"
+    // }
+
+    // async function testResult() {
+    //     let first = await doubleAfter2seconds(30);
+    //     let second = await doubleAfter2seconds(50);
+    //     let third = await doubleAfter2seconds(30);
+    //     let res = first + second + third;
+    //     console.log(first + second + third);
+    //     return res;
+    // }
+    // testResult()
+    // testResult().then(result => {
+    //     console.log(result, 'aa');
+    //     return
+
+    // }).catch(err => {
+    //     console.log(err,'bb')
+    // }).finally(
+    //     ()=>{
+    //         console.log('ppp')
+    //         return;
+    //     }
+    // );
+    
+
+
+//----------------------------------------
+    // function timeout(ms) {
+    //     return new Promise((resolve, reject) => {
+    //         setTimeout(resolve, ms, 'done');
+    //     });
+    // }
+    // timeout(1000).then(console.log)
+    // var p2 = new Promise(function (resolve, reject) {
+    //     reject(new Error('失败'));
+    // });
+    // p2.then(console.log, console.error);
+</script>
+
+</html>
