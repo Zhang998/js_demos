@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 
 <head>
     <meta charset="UTF-8">
@@ -35,6 +35,7 @@
 <script>
     var test_div = document.getElementById("content");
     var text_h1 = document.querySelectorAll("h1")[0];
+    var timer;
     // var 3 = aaa;
     console.log(123);
     test_div.onmousedown = function (ev) {
@@ -63,30 +64,31 @@
     // }
 
 
-    // test_div.onmouseover = function () {
-    //     text_h1.innerHTML = "onmouseover进入"
-    //     console.log("onmouseover进入");
-    // }
-    // test_div.onmousemove = function () {
-    //     console.log("正在移动···");
-
-    //     setTimeout(() => {
-    //         text_h1.innerHTML = "移动"
-    //     }, 2000)
-    // }
-    // test_div.onmouseout = function () {
-    //     text_h1.innerHTML = "onmouseout移出"
-    //     console.log("onmouseout移出");
-    // }
-
-    test_div.onmouseenter = function () {
-        text_h1.innerHTML = "mouseenter进入"
-        console.log("mouseenter进入");
+    test_div.onmouseover = function () {
+        text_h1.innerHTML = "onmouseover进入"
+        console.log("onmouseover进入");
     }
-    test_div.onmouseleave = function () {
-        text_h1.innerHTML = "mouseleave移出"
-        console.log("mouseleave移出");
+    test_div.onmousemove = function (e) {
+        clearTimeout(timer)
+        timer = setTimeout(() => {
+            console.log("正在移动···");
+            console.log(e);
+            text_h1.innerHTML = "移动"
+        }, 1000)
     }
+    test_div.onmouseout = function () {
+        text_h1.innerHTML = "onmouseout移出"
+        console.log("onmouseout移出");
+    }
+
+    // test_div.onmouseenter = function () {
+    //     text_h1.innerHTML = "mouseenter进入"
+    //     console.log("mouseenter进入");
+    // }
+    // test_div.onmouseleave = function () {
+    //     text_h1.innerHTML = "mouseleave移出"
+    //     console.log("mouseleave移出");
+    // }
 
     // document.body.addEventListener(
     //     'click',
