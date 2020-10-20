@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>焦点事件</title>
+</head>
+
+<body>
+    <input type="text" id="ipt">
+</body>
+<script>
+    let ipt = document.getElementById('ipt')
+    function focus() {
+        event.target.style.background = 'blue';
+    }
+    ipt.addEventListener('focusin', function (event) {
+        console.log('focusin触发');
+    }, true);
+    ipt.addEventListener('focusout', function (event) {
+        console.log('focusout触发');
+    }, true);
+    ipt.addEventListener('focus', function (event) {
+        console.log('focus触发');
+        console.log(event);
+        event.target.style.background = 'pink';
+    }, true);
+
+    ipt.addEventListener('blur', function (event) {
+        console.log('blur触发');
+        event.target.style.background = '';
+    }, true);
+</script>
+
+</html>
