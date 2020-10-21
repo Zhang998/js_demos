@@ -9,6 +9,20 @@
 
 <body>
     <input type="text" id="ipt">
+    <br>
+    <input type="text" id="myTextField" value="Text field.">
+    <p></p>
+    <button type="button" onclick="focusMethod()">点这里将焦点设置到文本框上！</button>
+    <br>
+    <!-- <button type="button" id="myButton">Click Me!</button> -->
+    <p></p>
+    <button type="button" onclick="focusMethod2()">点这里将焦点设置到按钮上！</button>
+    <button type="button" onclick="focusScrollMethod()">Click me to focus on the button!</button>
+    <button type="button" onclick="focusNoScrollMethod()">Click me to focus on the button without scrolling!</button>
+
+    <div id="container" style="height: 5000px; width: 1000px;">
+        <button type="button" id="myButton" style="margin-top: 2500px;">Click Me!</button>
+    </div>
 </body>
 <script>
     let ipt = document.getElementById('ipt')
@@ -31,6 +45,19 @@
         console.log('blur触发');
         event.target.style.background = '';
     }, true);
+
+    focusMethod = function getFocus() {
+        document.getElementById("myTextField").focus();
+    }
+    focusMethod2 = function getFocus() {
+        document.getElementById("myButton").focus();
+    }
+    focusScrollMethod = function getFocus() {
+        document.getElementById("myButton").focus({ preventScroll: false });
+    }
+    focusNoScrollMethod = function getFocusWithoutScrolling() {
+        document.getElementById("myButton").focus({ preventScroll: true });
+    }
 </script>
 
 </html>
