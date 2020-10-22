@@ -7,7 +7,7 @@
     <title>防抖函数</title>
 </head>
 
-<body>
+<body style="height: 5000px;">
     <input type="text">
 </body>
 <script>
@@ -28,6 +28,27 @@
             }, delay);
         }
     }
+
+
+    //截流
+    (function () {
+        window.addEventListener('scroll', scrollThrottler, false);
+
+        var scrollTimeout;
+        function scrollThrottler() {
+            console.log(!scrollTimeout);
+            if (!scrollTimeout) {
+                scrollTimeout = setTimeout(function () {
+                    scrollTimeout = null;
+                    actualScrollHandler();
+                }, 2000);
+            }
+        }
+
+        function actualScrollHandler() {
+            console.log('qwe');
+        }
+    }());
 </script>
 
 </html>
