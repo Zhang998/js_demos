@@ -30,9 +30,11 @@
     console.log(searchParams.get('name'));
 
     function on_load() {
+        localStorage.setItem('2.html加载',Math.random())
         console.log('页面加载完成');
     }
     function on_unload() {
+        localStorage.setItem('2.html卸载',Math.random())
         console.log('页面销毁');
     }
 </script>

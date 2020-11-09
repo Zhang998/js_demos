@@ -11,15 +11,25 @@
     <!-- frame1.html -->
     <h1>iframe1 page</h1>
     <script>
-        // window.parent.postMessage('message from iframe1');
-        // window.top.postMessage('message from iframe1', 'http://192.168.0.30:5500/index111.html');
+        // console.log(window.parent.document.body);
+        // console.log(window.top.document.body);
+        window.parent.postMessage('message from iframe1');
+        window.top.postMessage('message from iframe1', 'http://192.168.0.31:5500/postMessage/index.html');
+
+
         window.addEventListener('message', function (e) {
-            console.log(e.data)
+            // console.log(e.data)
             var payload = JSON.parse(e.data);
             sessionStorage.setItem(payload.key, JSON.stringify(payload.data));
         }, false)
+
+
+        //storage事件用来监听同源的其他窗口的变动
         window.addEventListener('storage', e => {
             console.log(e);
+            setTimeout(() => {
+                // sessionStorage.asd=456
+            }, 2000);
         })
     </script>
 </body>

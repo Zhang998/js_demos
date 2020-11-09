@@ -12,15 +12,23 @@
     <script>
         // console.log(window.parent.document.body);
         window.onhashchange = checkMessage;
+
+
         function checkMessage() {
             var message = window.location.hash;
+            console.log(message);
             console.log(decodeURIComponent(message));
         }
 
 
         setTimeout(() => {
-            // parent.location.href = location.origin + '#' + '这是frame2传来的hash';
-        }, 2000);
+            // parent.location.href = parent.location.origin + parent.location.pathname + '#这是frame2传来的hash'
+        }, 5000);
+
+
+        window.addEventListener('storage',function (e) {
+            console.log(e);
+        })
     </script>
 </body>
 
