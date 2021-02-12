@@ -18,7 +18,7 @@
 </body>
 <script>
     setTimeout(() => {      //清除掉search
-        window.history.replaceState(null, '', `${location.pathname}${location.hash}`);
+        window.history.replaceState({qwe:123}, '', `${location.pathname}${location.hash}`);
     }, 4000);
     console.log(history.length);
     window.onpopstate = function (event) {
@@ -27,16 +27,16 @@
     };
     window.name = '好好学习';
     function l_assign(){
-        location.assign('http://192.168.0.30:5501/2.html?name=zhangsan&age=36#aaa')
+        location.assign('http://192.168.0.21:5500/history/2.html?name=zhangsan&age=36#aaa')
     }
     function l_replace(){
-        location.replace('http://192.168.0.30:5501/2.html?name=zhangsan&age=36#aaa')
+        location.replace('http://192.168.0.21:5500/history/2.html?name=zhangsan&age=36#aaa')
     }
     function l_href(){
-        location.href  = 'http://192.168.0.30:5501/2.html?name=zhangsan&age=36#aaa';
+        location.href  = 'http://192.168.0.21:5500/history/2.html?name=zhangsan&age=36#aaa';
     }
     function location_() {
-        location = 'http://192.168.0.30:5501/2.html?name=zhangsan&age=36#aaa'
+        location = 'http://192.168.0.21:5500/history/2.html?name=zhangsan&age=36#aaa'
     }
     // function on_unload() {
     //     sessionStorage.clear();
