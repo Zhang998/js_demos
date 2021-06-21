@@ -8,7 +8,9 @@
 </head>
 
 <body>
-    <h1>iframe2 page</h1>
+    <h1 id="qqq">iframe2 page</h1>
+    
+    <a href="#qqq" rel="noopener noreferrer">qqq</a>
     <script>
         // console.log(window.parent.document.body);
         window.onhashchange = checkMessage;
@@ -22,7 +24,7 @@
 
 
         setTimeout(() => {
-            // parent.location.href = parent.location.origin + parent.location.pathname + '#这是frame2传来的hash'
+            parent.location.href = parent.location.origin + parent.location.pathname + '#这是frame2传来的hash'
         }, 5000);
 
 

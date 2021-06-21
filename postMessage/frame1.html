@@ -7,20 +7,24 @@
     <title>frame1</title>
 </head>
 
-<body>
+<body id="frame1body">
     <!-- frame1.html -->
     <h1>iframe1 page</h1>
+    <p></p>
     <script>
-        // console.log(window.parent.document.body);
-        // console.log(window.top.document.body);
-        window.parent.postMessage('message from iframe1');
-        window.top.postMessage('message from iframe1', 'http://192.168.0.31:5500/postMessage/index.html');
+        // console.log('frame1=>', window.name);
+        // console.log('frame1=>', window.top.document.body);
+        // console.log('frame1=>', window.parent.document.body);
+        // console.log('frame1=>', window.self.document.body);
+        // console.log('frame1=>', window.top == window.parent);
+        // window.parent.postMessage('message from iframe1','*');
+        window.top.postMessage('message from iframe1', 'http://localhost:8080');
 
 
         window.addEventListener('message', function (e) {
             // console.log(e.data)
-            var payload = JSON.parse(e.data);
-            sessionStorage.setItem(payload.key, JSON.stringify(payload.data));
+            // var payload = JSON.parse(e.data);
+            // sessionStorage.setItem('abc', JSON.stringify(e.data));
         }, false)
 
 
@@ -28,7 +32,7 @@
         window.addEventListener('storage', e => {
             console.log(e);
             setTimeout(() => {
-                // sessionStorage.asd=456
+                sessionStorage.asd=456
             }, 2000);
         })
     </script>

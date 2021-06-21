@@ -7,14 +7,15 @@
     <title>index</title>
 </head>
 
-<body>
+<body id='parentbody'>
     <!-- index.html -->
-    <iframe src="./frame1.html" frameborder="1"></iframe>
-    <iframe src="http://192.168.0.31:5500/postMessage/frame2.html" frameborder="1" id='iframe2'></iframe>
+    <iframe src="./frame1.html" frameborder="1" name="iframe1" style="height: 500px;"></iframe>
+    <iframe src="http://localhost:8080/postMessage/frame2.html" frameborder="1" id='iframe2' name="iframe2"></iframe>
     <script>
-        console.log(document.getElementById("iframe2").contentWindow.document);
+        // window.name='parentwindowname'
+        // console.log(document.getElementsByName("iframe1")[0].contentWindow.document.body);
         window.addEventListener('message', function (e) {
-            // console.log(e.data)
+            // console.log(e)
         }, false)
 
         var frame1 = window.frames[0];
@@ -24,17 +25,18 @@
                     name: 'Jacks',
                     age:Math.random()
                 };
-                frame1.postMessage(JSON.stringify({ key: 'storage', data: obj }), 'http://192.168.0.31:5500/postMessage/frame1.html');
+                // frame1.postMessage(JSON.stringify({ key: 'storage', data: obj }), 'http://localhost:8080');
+                // frame1.postMessage(obj, 'http://localhost:8080');
 
-            }, 3000);
+            }, 6000);
         }
 
 
         setTimeout(() => {
-            sessionStorage.asd=123
-            // var src = location.href + '#' + 'abc';
-            // var src = document.getElementById('iframe2').src + '#' + '这是父窗口传来的hash';
-            // document.getElementById('iframe2').src = src;
+            // sessionStorage.asd=1234599
+            // var src = location.href + '#' + 'abc';   //错误写法
+            var src = document.getElementById('iframe2').src + '#' + '这是父窗口传来的hash';
+            document.getElementById('iframe2').src = src;
         }, 3000);
 
 
